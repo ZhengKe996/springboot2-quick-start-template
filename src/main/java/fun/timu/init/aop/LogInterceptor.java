@@ -53,4 +53,18 @@ public class LogInterceptor {
         log.info("request end, id: {}, cost: {}ms", requestId, totalTimeMillis);
         return result;
     }
+
+    private String maskSensitiveData(Object[] args) {
+        if (args == null || args.length == 0) {
+            return "[]";
+        }
+        StringBuilder maskedParams = new StringBuilder("[");
+        for (int i = 0; i < args.length; i++) {
+            if (i > 0) {
+                maskedParams.append(", ");
+            }
+        }
+        maskedParams.append("]");
+        return maskedParams.toString();
+    }
 }
