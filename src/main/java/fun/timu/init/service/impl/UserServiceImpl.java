@@ -117,10 +117,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (currentUser == null || currentUser.getId() == null) throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
 
 
-        // 2. 从数据库查询（通过走session的方式 优化性能）
-//        long userId = currentUser.getId();
-//        currentUser = this.getById(userId);
-//        if (currentUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
+        // 2. 从数据库查询
+        long userId = currentUser.getId();
+        currentUser = this.getById(userId);
+        if (currentUser == null) throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
         return currentUser;
     }
 
